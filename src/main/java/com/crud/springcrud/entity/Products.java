@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "PRODUCT_TBL")
-public class Product {
+public class Products {
 
     @Id
     @GeneratedValue
