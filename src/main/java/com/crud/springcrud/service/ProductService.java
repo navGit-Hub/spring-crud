@@ -27,4 +27,21 @@ public class ProductService {
     public Products getProductById(int id){
         return repository.findById(id).orElse(null);
     }
+
+    public Products getProductsByName(String name){
+        return repository.findByName(name);
+    }
+
+    public String deleteProduct(int id){
+        repository.deleteById(id);
+        return "Product deleted"+id;
+    }
+
+    public Products updateProduct(Products product){
+        Products existingProduct = repository.findById(product.getId()).orElse(null);
+        existingProduct.setName(product.getName());
+        existingProduct.setPrice(product.getPrice());
+        existingProduct.setQuantity(product.getQuantity());
+        return repository.save(existingProduct);
+    }
 }
