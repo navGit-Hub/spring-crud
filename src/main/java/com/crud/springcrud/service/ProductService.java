@@ -20,24 +20,24 @@ public class ProductService {
         return repository.saveAll(products);
     }
 
-    public List<Products> getProduct(){
+    public List<Products> getProduct() {
         return repository.findAll();
     }
 
-    public Products getProductById(int id){
+    public Products getProductById(int id) {
         return repository.findById(id).orElse(null);
     }
 
-    public Products getProductsByName(String name){
+    public Products getProductsByName(String name) {
         return repository.findByName(name);
     }
 
-    public String deleteProduct(int id){
+    public String deleteProduct(int id) {
         repository.deleteById(id);
-        return "Product deleted"+id;
+        return "Product deleted" + id;
     }
 
-    public Products updateProduct(Products product){
+    public Products updateProduct(Products product) {
         Products existingProduct = repository.findById(product.getId()).orElse(null);
         existingProduct.setName(product.getName());
         existingProduct.setPrice(product.getPrice());

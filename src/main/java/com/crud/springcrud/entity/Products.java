@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "PRODUCT_TBL")
+@Table(name = "PRODUCTS_TBL")
 public class Products {
 
     @Id
@@ -22,9 +22,7 @@ public class Products {
     private String name;
     private int quantity;
     private double price;
-    public Integer getId() {
-        return id;
-    }
+
     public String getName() {
         return name;
     }
@@ -43,6 +41,9 @@ public class Products {
     public void setPrice(double price2) {
         this.price = price2;
     }
-    
-    
+
+    public Integer getId() {
+        return this.id;
+    }
+
 }
