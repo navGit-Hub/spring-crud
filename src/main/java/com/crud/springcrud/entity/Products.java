@@ -23,12 +23,25 @@ public class Products {
     private int quantity;
     private double price;
     public Integer getId() {
-        return null;
+        return id;
     }
-    public Object getName() {
-        return null;
+    public String getName() {
+        return name;
     }
-    public void setName(Object name2) {
+    public void setName(String name) {
+        this.name = name;
+    }
+    public double getPrice() {
+        return price;
+    }
+    public int getQuantity() {
+        return quantity;
+    }
+    public void setQuantity(int quantity2) {
+        this.quantity = quantity2;
+    }
+    public void setPrice(double price2) {
+        this.price = price2;
     }
     
     

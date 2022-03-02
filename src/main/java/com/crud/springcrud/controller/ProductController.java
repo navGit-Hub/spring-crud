@@ -36,7 +36,7 @@ public class ProductController {
         return service.getProduct();
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/productById/{id}")
     public Products findProductById(@PathVariable int id){
         return service.getProductById(id);
     }
@@ -46,9 +46,9 @@ public class ProductController {
         return service.getProductsByName(name);
     }
 
-    @PutMapping("/addProducts")
-    public  Products updateProduct(@RequestBody Products products){
-        return service.updateProduct(products);
+    @PutMapping("/updateProduct")
+    public  Products updateProduct(@RequestBody Products product){
+        return service.updateProduct(product);
     } 
 
     @DeleteMapping("/delete/{id}")
