@@ -8,11 +8,13 @@ import javax.persistence.GeneratedValue;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString
 @Table(name = "PRODUCTS_TBL")
 public class Products {
 
