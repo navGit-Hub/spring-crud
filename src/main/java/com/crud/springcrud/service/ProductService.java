@@ -44,4 +44,6 @@ public class ProductService {
         existingProduct.setQuantity(product.getQuantity());
         return repository.save(existingProduct);
     }
+
+
 }

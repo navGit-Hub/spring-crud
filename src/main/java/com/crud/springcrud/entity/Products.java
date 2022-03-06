@@ -7,12 +7,16 @@ import javax.persistence.GeneratedValue;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
 @ToString
 @Table(name = "PRODUCTS_TBL")
@@ -24,7 +28,12 @@ public class Products {
     private String name;
     private int quantity;
     private double price;
-
+    // public Products(int id,String name, int quantity, double price) {
+    //     this.id=id;
+    //     this.name = name;
+    //     this.quantity = quantity;
+    //     this.price = price;
+    // }
     public String getName() {
         return name;
     }
@@ -37,15 +46,15 @@ public class Products {
     public int getQuantity() {
         return quantity;
     }
-    public void setQuantity(int quantity2) {
-        this.quantity = quantity2;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
     public void setPrice(double price2) {
         this.price = price2;
     }
 
     public Integer getId() {
-        return this.id;
+        return id;
     }
 
 }
