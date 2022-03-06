@@ -20,7 +20,20 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.crud.springcrud.service.ProductService;
+
 import com.crud.springcrud.entity.Products;
+
+
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class SpringcrudApplicationTests {
+
+	
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -38,6 +51,7 @@ public class SpringcrudApplicationTests {
 	}
 
 	@Test
+
 	public void addEmployeeTest() throws Exception {
 		Products prod = new Products();
 		prod.setName("Bat");
@@ -51,3 +65,13 @@ public class SpringcrudApplicationTests {
 		Assert.assertTrue("true",true );
 
 	}
+
+	public void deleteUserTest() {
+		User user = new User(999, "Pranya", 33, "Pune");
+		service.deleteUser(user);
+		verify(repository, times(1)).delete(user);
+	}
+
+
+}
+

@@ -29,7 +29,7 @@ public class ProductController {
     }
 
     @GetMapping("/productById/{id}")
-    public Products findProductById(@PathVariable int id){
+    public Products findProductById(@PathVariable int id) {
         return service.getProductById(id);
     }
 
@@ -39,9 +39,9 @@ public class ProductController {
     }
 
     @PutMapping("/updateProduct")
-    public  Products updateProduct(@RequestBody Products product){
+    public Products updateProduct(@RequestBody Products product) {
         return service.updateProduct(product);
-    } 
+    }
 
     @DeleteMapping("/delete/{id}")
     public String deleteProduct(@PathVariable int id) {

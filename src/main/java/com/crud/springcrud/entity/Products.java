@@ -37,18 +37,22 @@ public class Products {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public double getPrice() {
         return price;
     }
+
     public int getQuantity() {
         return quantity;
     }
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
     public void setPrice(double price2) {
         this.price = price2;
     }
