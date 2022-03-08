@@ -7,12 +7,15 @@ import javax.persistence.GeneratedValue;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
 @ToString
 @Table(name = "PRODUCTS_TBL")
@@ -41,8 +44,8 @@ public class Products {
         return quantity;
     }
 
-    public void setQuantity(int quantity2) {
-        this.quantity = quantity2;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public void setPrice(double price2) {
@@ -50,7 +53,7 @@ public class Products {
     }
 
     public Integer getId() {
-        return this.id;
+        return id;
     }
 
 }
