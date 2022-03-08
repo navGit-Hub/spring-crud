@@ -37,6 +37,7 @@ public class ProductService {
         return "Product deleted" + id;
     }
 
+    // new commit
     public Products updateProduct(Products product) {
         // Products existingProduct = repository.findById(product.getId()).orElse(null);
         // existingProduct.setName(product.getName());

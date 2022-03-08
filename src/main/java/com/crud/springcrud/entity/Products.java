@@ -25,12 +25,6 @@ public class Products {
     private int quantity;
     private double price;
 
-    public Products(String string, int i, double d) {
-        this.name = string;
-        this.quantity = i;
-        this.price = d;
-    }
-
     public String getName() {
         return name;
     }

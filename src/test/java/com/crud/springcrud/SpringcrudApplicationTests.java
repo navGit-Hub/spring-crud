@@ -1,71 +1,67 @@
 package com.crud.springcrud;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import com.crud.springcrud.entity.Products;
-import com.crud.springcrud.repository.ProductRepository;
-import com.crud.springcrud.service.ProductService;
-
-
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-<<<<<<< HEAD
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class SpringcrudApplicationTests {
-
-	
-=======
+import com.crud.springcrud.entity.Response;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SpringcrudApplicationTests {
+
+	private MockMvc mockMvc;
 
 	@Autowired
-	private ProductService service;
+	private WebApplicationContext context;
 
-	@MockBean
-	private ProductRepository repository;
+	ObjectMapper om = new ObjectMapper();
 
-	@Test
-	public void getUsersTest() {
-		when(repository.findAll()).thenReturn(Stream.of(new Products()))
+	@Before
+	public void setup() {
+		mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
 	}
 
 	@Test
-	public void getUserbyAddressTest() {
-		String address = "Bangalore";
-		when(repository.findByAddress(address))
-				.thenReturn(Stream.of(new User(376, "Danile", 31, "USA")).collect(Collectors.toList()));
-		assertEquals(1, service.getUserbyAddress(address).size());
+	public void saveProductTest() throws Exception {
+		Products product = new Products();
+		product.setName("Mobile");
+		product.setPrice(2000.0);
+		product.setQuantity(10);
+		String jsonRequest = om.writeValueAsString(product);
+		MvcResult result = mockMvc.perform(
+				post("/ProductService/saveProduct").content(jsonRequest).content(MediaType.APPLICATION_JSON_VALUE))
+				.andExpect(status().isOk()).andReturn();
+		String resultContent = result.getResponse().getContentAsString();
+		Response response = om.readValue(resultContent, Response.class);
+		Assert.assertTrue(response.isStatus() == Boolean.TRUE);
 	}
 
 	@Test
-	public void saveUserTest() {
-		User user = new User(999, "Pranya", 33, "Pune");
-		when(repository.save(user)).thenReturn(user);
-		assertEquals(user, service.addUser(user));
-	}
+	public void getProductTest() throws Exception {
 
-	@Test
-	public void deleteUserTest() {
-		User user = new User(999, "Pranya", 33, "Pune");
-		service.deleteUser(user);
-		verify(repository, times(1)).delete(user);
+		MvcResult result = mockMvc
+				.perform(get("/ProductService/getProduct").content(MediaType.APPLICATION_JSON_VALUE))
+				.andExpect(status().isOk()).andReturn();
+		String resultContent = result.getResponse().getContentAsString();
+		Response response = om.readValue(resultContent, Response.class);
+		Assert.assertTrue(response.isStatus() == Boolean.TRUE);
 	}
->>>>>>> 386bfce34497eb1fec015c8608dcda9365e1db39
+	// Other tests(delete,getById) cases were verified via postman
 
 }
