@@ -39,11 +39,11 @@ public class ProductService {
 
     // new commit
     public Products updateProduct(Products product) {
-        // Products existingProduct = repository.findById(product.getId()).orElse(null);
-        // existingProduct.setName(product.getName());
-        // existingProduct.setPrice(product.getPrice());
-        // existingProduct.setQuantity(product.getQuantity());
-        return product;
+         Products existingProduct = repository.findById(product.getId()).orElse(null);
+         existingProduct.setName(product.getName());
+         existingProduct.setPrice(product.getPrice());
+         existingProduct.setQuantity(product.getQuantity());
+        return existingProduct;
     }
 
 

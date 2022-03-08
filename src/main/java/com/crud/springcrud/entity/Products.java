@@ -56,4 +56,10 @@ public class Products {
         return id;
     }
 
+	public void setId(int id) {
+		// TODO Auto-generated method stub
+		this.id=id;
+		
+	}
+
 }

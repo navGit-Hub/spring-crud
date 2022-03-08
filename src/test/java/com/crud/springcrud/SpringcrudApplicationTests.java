@@ -1,5 +1,6 @@
 package com.crud.springcrud;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -62,6 +63,54 @@ public class SpringcrudApplicationTests {
 		Response response = om.readValue(resultContent, Response.class);
 		Assert.assertTrue(response.isStatus() == Boolean.TRUE);
 	}
-	// Other tests(delete,getById) cases were verified via postman
+
+	
+	@Test
+	public void getProductByIdTest() throws Exception {
+		Products product = new Products();
+		product.setId(2);
+		product.setName("Mobile");
+		product.setPrice(2000.0);
+		product.setQuantity(10);
+		String jsonRequest = om.writeValueAsString(product);
+		MvcResult result = mockMvc.perform(
+				get("/ProductService/getProductById/2").content(jsonRequest).content(MediaType.APPLICATION_JSON_VALUE))
+				.andExpect(status().isOk()).andReturn();
+		String resultContent = result.getResponse().getContentAsString();
+		Response response = om.readValue(resultContent, Response.class);
+		Assert.assertTrue(response.isStatus() == Boolean.TRUE);
+	}
+	
+	@Test
+	public void deleteProductByIdTest() throws Exception {
+		Products product = new Products();
+		product.setId(2);
+		product.setName("Mobile");
+		product.setPrice(2000.0);
+		product.setQuantity(10);
+		String jsonRequest = om.writeValueAsString(product);
+		MvcResult result = mockMvc.perform(
+				delete("/ProductService/deleteProduct/2").content(jsonRequest).content(MediaType.APPLICATION_JSON_VALUE))
+				.andExpect(status().isOk()).andReturn();
+		String resultContent = result.getResponse().getContentAsString();
+		Response response = om.readValue(resultContent, Response.class);
+		Assert.assertTrue(response.isStatus() == Boolean.TRUE);
+	}
+
+	@Test
+	public void getProductByNameTest() throws Exception {
+		Products product = new Products();
+		product.setName("Mobile");
+		product.setPrice(2000.0);
+		product.setQuantity(10);
+		String jsonRequest = om.writeValueAsString(product);
+		MvcResult result = mockMvc.perform(
+				get("/ProductService/getProductByName/Mobile").content(jsonRequest).content(MediaType.APPLICATION_JSON_VALUE))
+				.andExpect(status().isOk()).andReturn();
+		String resultContent = result.getResponse().getContentAsString();
+		Response response = om.readValue(resultContent, Response.class);
+		Assert.assertTrue(response.isStatus() == Boolean.TRUE);
+	}
+
 
 }
